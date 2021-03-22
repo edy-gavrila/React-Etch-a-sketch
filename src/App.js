@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+import Header from "./Components/Header/header"
+import Controls from "./Components/Controls/controls"
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     <h1>Project Starter</h1>
+      <Header/>
+      <Controls/>
+
     </div>
   );
 }
