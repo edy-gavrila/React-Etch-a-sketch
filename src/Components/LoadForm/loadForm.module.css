@@ -1,0 +1,47 @@
+.LoadForm {
+  background-color: #fff;
+  height: 400px;
+  width: 400px;
+  border-radius: 5px;
+}
+
+.Header {
+  position: relative;
+  height: 10%;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.Header i {
+  position: absolute;
+  right: 10px;
+}
+
+.Header i:hover {
+  color: lightgrey;
+}
+
+select {
+  width: 180px;
+  height: 300px;
+  text-align: center;
+  border: solid 2px rgba(0,0,0,0.2);
+  border-radius: 5px;
+
+}
+
+select::-webkit-scrollbar {
+  display: none;
+}
+
+.LoadContainer {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}

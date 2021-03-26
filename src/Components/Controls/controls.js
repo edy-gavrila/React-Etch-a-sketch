@@ -9,10 +9,9 @@ const Controls = (props) => {
         <li className={`nav-item`}>
           <button
             className={`nav-link text-white ${
-              activeLink === "grayscale" ? "active" : ""
+              props.colourMode === "grayscale" ? "active" : ""
             } `}
             onClick={() => {
-              setActiveLink("grayscale");
               props.setColorMode("grayscale");
             }}
           >
@@ -23,10 +22,9 @@ const Controls = (props) => {
         <li className={`nav-item`}>
           <button
             className={`nav-link text-white ${
-              activeLink === "rainbow" ? "active" : ""
+              props.colourMode === "rainbow" ? "active" : ""
             } `}
             onClick={() => {
-              setActiveLink("rainbow");
               props.setColorMode("rainbow");
             }}
           >
@@ -48,7 +46,7 @@ const Controls = (props) => {
                 value={props.backgroundColour}
                 onChange={(e) => {
                   props.setBgColour(e.target.value);
-                  setActiveLink("none");
+                  
                 }}
               ></input>
             </li>

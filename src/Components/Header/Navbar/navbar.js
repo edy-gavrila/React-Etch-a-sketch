@@ -27,12 +27,19 @@ const navbar = (props) => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
-                props.showModalHandler();
+                props.showSaveModalHandler();
               }}
             >
               Save Sketch
             </a>
-            <a className="nav-link" href="/">
+            <a
+              className="nav-link"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                props.showLoadModalHandler();
+              }}
+            >
               Load Sketch
             </a>
             <a className="nav-link" href="/">

@@ -34,6 +34,7 @@ const saveForm = (props) => {
       hideWarning();
 
       props.saveToLocalStorage(input);
+      props.hideModal();
     }
   };
 
@@ -43,10 +44,9 @@ const saveForm = (props) => {
         Save Drawing
         <i className="fas fa-times" onClick={props.hideModal}></i>
       </div>
-
       <form className="mt-4 ">
         <div className="row-auto mx-4 p-2">
-          <label htmlfor="filename" className="form-label text-center">
+          <label htmlFor="filename" className="form-label text-center">
             Drawing name:
           </label>
         </div>

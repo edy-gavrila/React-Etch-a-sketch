@@ -1,7 +1,8 @@
 import Header from "./Components/Header/header";
 import Controls from "./Components/Controls/controls";
 import Backdrop from "./Components/Modal/Backdrop/backdrop";
-import SaveForm from "./Components/Modal/SaveForm/saveForm";
+import SaveForm from "./Components/SaveForm/saveForm";
+import LoadForm from "./Components/LoadForm/loadForm";
 import Footer from "./Components/Footer/footer";
 import Sketchpad from "./Components/Sketchpad/sketchpad";
 import { useState, useEffect } from "react";
@@ -36,7 +37,8 @@ function App() {
 
   const [mouseDown, setMouseDown] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showLoadModal, setShowLoadModal] = useState(false);
 
   const initPixelData = (size, colour) => {
     const newPixelData = new Array(size ** 2);
@@ -108,12 +110,19 @@ function App() {
     setPixelData(newPixelData);
   }
 
-  const showModalHandler = () => {
-    setShowModal(true);
+  const showSaveModalHandler = () => {
+    setShowSaveModal(true);
   };
 
-  const hideModalHandler = () => {
-    setShowModal(false);
+  const hideSaveModalHandler = () => {
+    setShowSaveModal(false);
+  };
+  const showLoadModalHandler = () => {
+    setShowLoadModal(true);
+  };
+
+  const hideLoadModalHandler = () => {
+    setShowLoadModal(false);
   };
 
   const saveToLocalStorage = (filename) => {
@@ -124,25 +133,51 @@ function App() {
       names.push(filename);
       localStorage.setItem("drawingNames", JSON.stringify(names));
     }
-    localStorage.setItem(filename, JSON.stringify(pixelData));
+    const drawing = {
+      size: gridSize,
+      bgColour: bgColour,
+      penColour: penColour,
+      colourMode: colourMode,
+      data: pixelData,
+    };
+    localStorage.setItem(filename, JSON.stringify(drawing));
+  };
+
+  const loadFromLocalStorage = (filename) => {
+    const data = JSON.parse(localStorage.getItem(filename));
+    setBgColour(data.bgColour);
+    setPenColour(data.penColor);
+    setGridSize(data.size);
+    setColourMode(data.colourMode);
+    setPixelData(data.data);
   };
 
   return (
     <div className="App" onMouseUp={mouseUpHandler}>
-      {showModal ? (
-        <Backdrop>
-          <SaveForm
-            hideModal={hideModalHandler}
-            saveToLocalStorage={saveToLocalStorage}
-          />
-        </Backdrop>
-      ) : null}
-      <Header showModal={showModalHandler} />
+      <Backdrop hidden={!showSaveModal}>
+        <SaveForm
+          hideModal={hideSaveModalHandler}
+          saveToLocalStorage={saveToLocalStorage}
+        />
+      </Backdrop>
+
+      <Backdrop hidden={!showLoadModal}>
+        <LoadForm
+          hideModal={hideLoadModalHandler}
+          loadDrawingHandler={loadFromLocalStorage}
+        />
+      </Backdrop>
+
+      <Header
+        showSaveModal={showSaveModalHandler}
+        showLoadModal={showLoadModalHandler}
+      />
       <Controls
         setSize={setSizeHandler}
         size={gridSize}
         penColor={penColour}
         backgroundColour={bgColour}
+        colourMode={colourMode}
         setPenColour={setPenColour}
         setBgColour={changeBgColour}
         setColorMode={changeColourMode}
