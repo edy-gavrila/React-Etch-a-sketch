@@ -6,6 +6,7 @@ const header = (props) => {
     <Navbar
       showSaveModalHandler={props.showSaveModal}
       showLoadModalHandler={props.showLoadModal}
+      showAboutModalHandler={props.showAboutModal}
     />
   );
 };

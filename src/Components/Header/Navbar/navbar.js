@@ -42,7 +42,12 @@ const navbar = (props) => {
             >
               Load Sketch
             </a>
-            <a className="nav-link" href="/">
+            <a className="nav-link" href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              props.showAboutModalHandler();
+            }}
+            >
               About
             </a>
           </div>

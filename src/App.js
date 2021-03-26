@@ -3,6 +3,7 @@ import Controls from "./Components/Controls/controls";
 import Backdrop from "./Components/Modal/Backdrop/backdrop";
 import SaveForm from "./Components/SaveForm/saveForm";
 import LoadForm from "./Components/LoadForm/loadForm";
+import About from "./Components/About/about";
 import Footer from "./Components/Footer/footer";
 import Sketchpad from "./Components/Sketchpad/sketchpad";
 import { useState, useEffect } from "react";
@@ -39,6 +40,7 @@ function App() {
 
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showLoadModal, setShowLoadModal] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
 
   const initPixelData = (size, colour) => {
     const newPixelData = new Array(size ** 2);
@@ -124,6 +126,13 @@ function App() {
   const hideLoadModalHandler = () => {
     setShowLoadModal(false);
   };
+  const showAboutModalHandler = () => {
+    setShowAboutModal(true);
+  };
+
+  const hideAboutModalHandler = () => {
+    setShowAboutModal(false);
+  };
 
   const saveToLocalStorage = (filename) => {
     const names = JSON.parse(localStorage.getItem("drawingNames"));
@@ -168,9 +177,14 @@ function App() {
         />
       </Backdrop>
 
+      <Backdrop hidden={!showAboutModal}>
+        <About hideModal={hideAboutModalHandler} />
+      </Backdrop>
+
       <Header
         showSaveModal={showSaveModalHandler}
         showLoadModal={showLoadModalHandler}
+        showAboutModal={showAboutModalHandler}
       />
       <Controls
         setSize={setSizeHandler}
