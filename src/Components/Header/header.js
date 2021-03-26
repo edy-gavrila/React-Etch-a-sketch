@@ -1,10 +1,8 @@
-import React from 'react';
-import Navbar from "./Navbar/navbar"
+import React from "react";
+import Navbar from "./Navbar/navbar";
 
-const header = () => {
-  return (
-    <Navbar/>
-  );
-}
+const header = (props) => {
+  return <Navbar showModalHandler={props.showModal} />;
+};
 
 export default header;

@@ -17,7 +17,7 @@ const sketchpad = (props) => {
   return (
     <div className={`d-flex justify-content-center ${classes.SketchContainer}`}>
       <div
-        className={`border border-info border-2 rounded-3 mt-4 bg-white ${classes.Sketchpad}`}
+        className={`border border-info border-2 rounded-3 mt-4 mb-4 bg-white ${classes.Sketchpad}`}
         onMouseUp={props.mouseUp}
       >
         {grid}

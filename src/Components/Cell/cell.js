@@ -8,8 +8,8 @@ const cell = (props) => {
         width: `${Math.floor(640 / props.size)}px`,
         backgroundColor: `${props.bgColour}`,
       }}
-      className={`border border-primary`}
-      onMouseEnter={() => props.setColor(props.keys)}
+      className={`border border-light`}
+      onMouseEnter={(e) => props.setColor(props.keys)}
       onMouseDown = {(e) => props.onMouseDown(e,props.keys)}
     >
     </div>

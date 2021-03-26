@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 
 const Controls = (props) => {
-  const [state, setState] = useState({
-    idActive: "grayscale",
-  });
-
-  const setActive = (link) => {
-    setState({ ...state, idActive: link });
-  };
+  const [activeLink, setActiveLink] = useState("grayscale");
 
   return (
     <div className={`d-flex justify-content-center bg-success p-2`}>
@@ -15,9 +9,12 @@ const Controls = (props) => {
         <li className={`nav-item`}>
           <button
             className={`nav-link text-white ${
-              state.idActive === "grayscale" ? "active" : ""
+              activeLink === "grayscale" ? "active" : ""
             } `}
-            onClick={() => setActive("grayscale")}
+            onClick={() => {
+              setActiveLink("grayscale");
+              props.setColorMode("grayscale");
+            }}
           >
             Grayscale
           </button>
@@ -26,43 +23,63 @@ const Controls = (props) => {
         <li className={`nav-item`}>
           <button
             className={`nav-link text-white ${
-              state.idActive === "rainbow" ? "active" : ""
+              activeLink === "rainbow" ? "active" : ""
             } `}
-            onClick={() => setActive("rainbow")}
+            onClick={() => {
+              setActiveLink("rainbow");
+              props.setColorMode("rainbow");
+            }}
           >
             Rainbow
           </button>
         </li>
 
-        <li className={`nav-item`}>
+        <li className={`nav-item dropdown`}>
           <button
-            className={`nav-link text-white ${
-              state.idActive === "bgColor" ? "active" : ""
-            }`}
-            onClick={() => setActive("bgColor")}
+            className={`nav-link text-white dropdown-toggle`}
+            data-bs-toggle="dropdown"
           >
-            Background color
+            Background
           </button>
-        </li>
-
-        <li className={`nav-item`}>
-          <button
-            className={`nav-link text-white ${
-              state.idActive === "penColor" ? "active" : ""
-            }`}
-            onClick={() => setActive("penColor")}
-          >
-            Pen color
-          </button>
+          <ul className={`dropdown-menu`}>
+            <li className={`dropdown-item`}>
+              <input
+                type="color"
+                value={props.backgroundColour}
+                onChange={(e) => {
+                  props.setBgColour(e.target.value);
+                  setActiveLink("none");
+                }}
+              ></input>
+            </li>
+          </ul>
         </li>
 
         <li className={`nav-item dropdown`}>
           <button
-            className={`nav-link dropdown-toggle  text-white ${
-              state.idActive === "gridSize" ? "active" : ""
-            }`}
+            className={`nav-link text-white dropdown-toggle`}
             data-bs-toggle="dropdown"
-            onClick={() => setActive("gridSize")}
+          >
+            Pen color
+          </button>
+          <ul className={`dropdown-menu`}>
+            <li className={`dropdown-item`}>
+              <input
+                type="color"
+                value={props.penColor}
+                onChange={(e) => {
+                  props.setPenColour(e.target.value);
+                  setActiveLink("none");
+                }}
+              ></input>
+            </li>
+          </ul>
+        </li>
+
+        <li className={`nav-item dropdown`}>
+          <button
+            className={`nav-link dropdown-toggle  text-white`}
+            data-bs-toggle="dropdown"
           >
             Grid Size - {props.size}x{props.size}
           </button>
