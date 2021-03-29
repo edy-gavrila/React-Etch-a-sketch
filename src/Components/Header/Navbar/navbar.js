@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "../Logo/logo";
-import classes from "./navbar.module.css";
 
 const navbar = (props) => {
   return (

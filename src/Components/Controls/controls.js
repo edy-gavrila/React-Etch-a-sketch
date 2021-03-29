@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Controls = (props) => {
-  const [activeLink, setActiveLink] = useState("grayscale");
-
   return (
     <div className={`d-flex justify-content-center bg-success p-2`}>
       <ul className={`nav nav-pills flex-column flex-md-row `}>
@@ -46,7 +44,6 @@ const Controls = (props) => {
                 value={props.backgroundColour}
                 onChange={(e) => {
                   props.setBgColour(e.target.value);
-                  
                 }}
               ></input>
             </li>
@@ -67,7 +64,6 @@ const Controls = (props) => {
                 value={props.penColor}
                 onChange={(e) => {
                   props.setPenColour(e.target.value);
-                  setActiveLink("none");
                 }}
               ></input>
             </li>

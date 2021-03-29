@@ -25,6 +25,8 @@ const rainbow_colors = [
   "violet",
 ];
 
+
+
 function App() {
   const [colourMode, setColourMode] = useState(INIT_COLOUR_MODE);
 
@@ -39,8 +41,19 @@ function App() {
   const [mouseDown, setMouseDown] = useState(false);
 
   const [showSaveModal, setShowSaveModal] = useState(false);
+
   const [showLoadModal, setShowLoadModal] = useState(false);
+
   const [showAboutModal, setShowAboutModal] = useState(false);
+
+  const [portSize, setPortSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  window.onresize = () => {
+    setPortSize({width:window.innerHeight, height:  window.innerWidth })
+  };
 
   const initPixelData = (size, colour) => {
     const newPixelData = new Array(size ** 2);
@@ -203,7 +216,9 @@ function App() {
         mouseDown={mouseDownHandler}
         mouseUp={mouseUpHandler}
         setColor={setCellColorHandler}
+        portSize={portSize}
       />
+      <Footer/>
     </div>
   );
 }

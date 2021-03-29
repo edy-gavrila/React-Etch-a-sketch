@@ -18,7 +18,11 @@
 }
 
 .Content {
-  padding: 10px;
-  height: 450px;
-  text-align:center;
+  margin: 30px;
+  height: 420px;
+  text-align: center;
+}
+
+.Content p strong {
+  text-align: center;
 }

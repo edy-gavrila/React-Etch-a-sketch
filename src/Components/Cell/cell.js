@@ -4,15 +4,15 @@ const cell = (props) => {
   return (
     <div
       style={{
-        height: `${Math.floor(640 / props.size)}px`,
-        width: `${Math.floor(640 / props.size)}px`,
+        boxSizing: "border-box",
+        height: `${props.cellSize}px`,
+        width: `${props.cellSize}px`,
         backgroundColor: `${props.bgColour}`,
       }}
       className={`border border-light`}
       onMouseEnter={(e) => props.setColor(props.keys)}
-      onMouseDown = {(e) => props.onMouseDown(e,props.keys)}
-    >
-    </div>
+      onMouseDown={(e) => props.onMouseDown(e, props.keys)}
+    ></div>
   );
 };
 
